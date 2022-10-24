@@ -17,6 +17,20 @@
             width: 100%;
             height: 100%;
         }
+
+
+
+	body {
+    margin: 0;            /* Reset default margin */
+}
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+}
+
     </style>
 </head>
 <body>
@@ -72,7 +86,7 @@
             document.write(`
             <center>
             <div class="embed-container">
-                <iframe width="640" height="480" src="https://www.youtube.com/embed/${v}?start=${s}&end=${e}" frameborder="0" allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="640" height="480" src="https://www.youtube.com/embed/${v}?start=${s}&end=${e}" frameborder="0" allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
             </div>
             </center>
             `);
@@ -87,3 +101,5 @@
     </script>
 </body>
 </html>
+
+
