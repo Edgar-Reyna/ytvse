@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Yt-vse</title>
+    <style>
+        .embed-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .embed-container iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- index.html?v=&s=&e=-->
+    <!-- index.html?v=ltmkqXz5wHQ&s=2280&e=2340 -->
+
+    <script>
+    "use strict";    
+    /**
+    * Funcion que captura las variables pasados por GET
+    * Devuelve un array de clave=>valor
+    */
+    function getGET()
+    {
+        // capturamos la url
+        var loc = document.location.href;
+        // si existe el interrogante
+        if(loc.indexOf('?')>0)
+        {
+            // cogemos la parte de la url que hay despues del interrogante
+            var getString = loc.split('?')[1];
+            // obtenemos un array con cada clave=valor
+            var GET = getString.split('&');
+            var get = {};
+            // recorremos todo el array de valores
+            for(var i = 0, l = GET.length; i < l; i++){
+                var tmp = GET[i].split('=');
+                get[tmp[0]] = unescape(decodeURI(tmp[1]));
+            }
+            return get;
+        }
+    }
+
+    window.onload = function()
+    {
+        // Cogemos los valores pasados por get
+        var valores=getGET();
+        if(valores)
+        {
+            //recogemos los valores que nos envia la URL en variables para trabajar 
+                //con ellas
+           
+            var v=valores['v'];
+            var s=valores['s'];
+            var e=valores['e'];
+
+                // hacemos un bucle para pasar por cada indice del array de valores
+            for(var index in valores)
+            {
+              // document.write(index+"="+valores[index]);   
+            }                    
+
+            document.write(`
+            <div class="embed-container">
+                <iframe width="640" height="480" src="https://www.youtube.com/embed/${v}?start=${s}&end=${e}" frameborder="0" allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            `);
+            
+        }else{
+            // no se ha recibido ningun parametro por GET
+            document.write("No se ha recibido ningún parámetro");
+        }
+    }
+
+    //edad = parseInt(edad); Para trabajar con valores numericos hay que convertirel string a numero
+    </script>
+</body>
+</html>
